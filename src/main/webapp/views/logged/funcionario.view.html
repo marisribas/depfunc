@@ -1,0 +1,126 @@
+<datasource name="Depto" entity="api/rest/Depto" keys="id" rows-per-page="100" on-before-create="" on-after-create="" on-before-update="" on-after-update="" on-before-delete="" on-after-delete="" on-after-fill=""></datasource>
+<h3>Funcionario</h3> 
+<div class="component-holder ng-binding ng-scope" data-component="crn-combobox-dynamic" id="crn-combobox-dynamic-867865"></div> 
+<div class="component-holder ng-binding ng-scope" data-component="crn-combobox-dynamic" id="crn-combobox-dynamic-596476"> 
+</div>
+selecionado:  {{session.selecionado}}
+<div class="component-holder ng-binding ng-scope" data-component="crn-combobox" id="crn-combobox-454159">
+  <div class="component-holder ng-binding ng-scope" data-component="crn-title" id="crn-title-177162"><p class="lead text-left" content="{{select}}">{{select}}</p></div><div class="form-group"> 
+    <label for="">Label</label> 
+    <ui-select crn-datasource="[{'key': 1,'value':'Value 1'},{'key': 2,'value':'Value 2'},{'key': 3,'value':'Value 3'}]" ng-model="session.selecionado" ng-disabled="disabled" theme="bootstrap" class="crn-select"> 
+      <ui-select-match placeholder="Select..." content="
+         {{$select.selected.value}} 
+      ">
+         {{$select.selected.value}} 
+      </ui-select-match> 
+      <ui-select-choices repeat="rowData.key as rowData in Depto.data | filter: $select.search"> 
+        <div data-container="true" content="{{rowData}}">{{rowData}}</div> 
+      </ui-select-choices> 
+    </ui-select> 
+  </div>
+</div>
+<div data-component="crn-datasource" id="crn-datasource-763276" class="component-holder"> 
+  <datasource filter="{{('/listByDepto/' + $select.selected.id)}}" name="Funcionario" entity="api/rest/Funcionario" keys="id" rows-per-page="100" delete-message="Deseja remover?"></datasource> 
+</div> 
+<div data-component="crn-button" id="crn-button-564202"> 
+  <button class="btn btn-primary" type="submit" onclick="" ng-click="Funcionario.startInserting()" ng-hide="Funcionario.inserting || Funcionario.editing"><i class="fa fa-user"></i> <span content="{{&quot;template.crud.new&quot; | translate}}">{{"template.crud.new" | translate}}</span></button> 
+</div> 
+<div class="component-holder" data-component="crn-grid" id="crn-grid-Funcionario"> 
+  <div crn-datasource="Funcionario" ng-hide="Funcionario.editing || Funcionario.inserting"> 
+    <table class="table  table-bordered table-hover table-striped"> 
+      <thead> 
+        <tr class="table-header"> 
+          <th> 
+            <div>
+               Nome 
+            </div> </th> 
+          <th> 
+            <div>
+               depto 
+            </div> </th> 
+          <th> 
+            <div content="
+               {{&quot;template.crud.actions&quot; | translate}} 
+            ">
+               {{"template.crud.actions" | translate}} 
+            </div> </th> 
+        </tr> 
+      </thead> 
+      <tbody> 
+        <tr class="table-content" ng-repeat="rowData in datasource.data"> 
+          <td> 
+            <div content="
+               {{rowData.nome}} 
+            ">
+               {{rowData.nome}} 
+            </div> </td> 
+          <td> 
+            <div content="
+               {{rowData.depto.nome}} 
+            ">
+               {{rowData.depto.nome}} 
+            </div> </td> 
+          <td> 
+            <div> 
+              <button class="btn btn-default btn-sm" type="submit" ng-click="datasource.startEditing(rowData)"><i class="fa fa-edit"></i></button> 
+              <button class="btn btn-default btn-sm" type="submit" ng-click="datasource.remove(rowData)"><i class="fa fa-times"></i></button> 
+            </div></td> 
+        </tr> 
+      </tbody> 
+    </table> 
+    <div class="table-footer-controls"> 
+      <button class="btn btn-default btn-block btn-clicked" ng-show="datasource.hasNextPage()" ng-click="datasource.nextPage()" content="{{&quot;template.crud.load_more&quot; | translate}}...">{{"template.crud.load_more" | translate}}...</button> 
+    </div> 
+  </div> 
+</div> 
+<div data-component="crn-form" id="crn-form-form-Funcionario"> 
+  <div class="form" ng-show="Funcionario.editing || Funcionario.inserting"> 
+    <form crn-datasource="Funcionario"> 
+      <div class="tool-bar" ng-hide="datasource.editing || datasource.inserting"> 
+        <button class="btn btn-primary" ng-click="datasource.startInserting()"><i class="glyphicon glyphicon-plus-sign"></i></button> 
+        <button class="btn btn-success" ng-click="datasource.startEditing()"><i class="glyphicon glyphicon-edit"></i></button> 
+        <button class="btn btn-primary" ng-disabled="!datasource.hasPrevious()" ng-click="datasource.previous()"><i class="glyphicon glyphicon-chevron-left"></i></button> 
+        <button class="btn btn-primary" ng-disabled="!datasource.hasNext()" ng-click="datasource.next()"><i class="glyphicon glyphicon-chevron-right"></i></button> 
+        <button class="btn btn-primary" ng-click="datasource.remove()"><i class="glyphicon glyphicon-trash"></i></button> 
+      </div> 
+      <div class="active-bar" ng-hide="!datasource.editing &amp;&amp; !datasource.inserting"> 
+        <button class="btn btn-success" ng-click="datasource.post()"><i class="glyphicon glyphicon-ok"></i></button> 
+        <button class="btn btn-danger" ng-click="datasource.cancel()"><i class="glyphicon glyphicon-remove"></i></button> 
+      </div> 
+      <fieldset ng-disabled="!datasource.editing &amp;&amp; !datasource.inserting"> 
+        <div data-component="crn-textinput" id="crn-textinput-nome"> 
+          <div class="form-group"> 
+            <label for="textinput-nome">Nome</label> 
+            <input type="text" ng-model="Funcionario.active.nome" class="form-control" id="textinput-nome" placeholder="Nome" required=""> 
+          </div> 
+        </div> 
+        <div data-component="crn-textinput" id="crn-textinput-depto"> 
+          <div class="form-group"> 
+            <label for="textinput-depto">depto</label> 
+            <div data-component="crn-datasource" class="component-holder"> 
+              <datasource name="depto" entity="api/rest/Depto" keys="id" dependent-by="{{Funcionario}}"></datasource> 
+            </div> 
+            <ui-select ng-model="Funcionario.active.depto" crn-datasource="depto" class="crn-select" id="textinput-depto"> 
+              <ui-select-match content="
+                 {{$select.selected.nome}} 
+              ">
+                 {{$select.selected.nome}} 
+              </ui-select-match> 
+              <ui-select-choices repeat="rowData in datasource.data | filter : $select.search"> 
+                <div data-container="true" content="
+                   {{rowData.nome}} 
+                ">
+                   {{rowData.nome}} 
+                </div> 
+              </ui-select-choices> 
+            </ui-select> 
+          </div> 
+        </div> 
+        <!-- OneToN --> 
+        <!-- OneToOne  end --> 
+        <!-- NtoN  --> 
+        <!-- NtoN  end--> 
+      </fieldset> 
+    </form> 
+  </div> 
+</div>
